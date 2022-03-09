@@ -9,8 +9,8 @@ Rails.application.routes.draw do
       resources :artists
     end
 
-    resources :songs, except: [:index, :show, :update, :create, :destroy] do 
-      resources :comments
+    resources :artists, except: [:index, :show, :update, :create, :destroy] do 
+      resources :songs
     end
     
   end

@@ -1,25 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import BillboardForm from './components/billboards/BillboardForm'
+import BillboardList from './components/billboards/BillboardList'
 
 function App() {
+  
+  const [billboards, setBillboards] = useState([])
+
+  useEffect( () => {
+    axios.get('/api/billboards')
+      .then( res => {
+        setBillboards(res.data)
+      })
+      .catch( err => console.log(err))
+  }, [])
+
+  const addBillboard = (billboard) => {
+    axios.post('/api/billboards', { billboard })
+      .then( res => {
+        setBillboards([...billboards, res.data])
+      })
+      .catch( err => {
+        console.log(err)
+        alert(err.errors)
+      })
+  }
+
+  const updateBillboard = (id, billboard) => {
+    axios.put(`/api/billboards/${id}`, {billboard})
+      .then( res => {
+        const newUpdatedBillboards = billboards.map( b => {
+          if (b.id === id) {
+            return res.data
+          }
+          return b 
+        })
+        setBillboards(newUpdatedBillboards)
+      })
+      .catch( err => {
+        console.log(err)
+        alert(err.errors)
+      })
+  }
+  
+  const deleteBillboard = (id) => {
+    axios.delete(`/api/billboards/${id}`)
+     .then(res => {
+       setBillboards(billboards.filter( b => b.id !== id))
+       alert(res.data.message)
+     })
+     .catch( err => console.log(err))
+  }
+  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   <>
+    <h1>Billboards</h1>
+    <BillboardForm addBillboard={addBillboard} />
+    <BillboardList
+      billboards={billboards}
+      updateBillboard={updateBillboard}
+      deleteBillboard={deleteBillboard} />
+   </>
+  )
 }
 
 export default App;

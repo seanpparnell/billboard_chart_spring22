@@ -3,7 +3,7 @@ class Api::BillboardsController < ApplicationController
   before_action :set_billboard, only: [:show, :update, :destroy]
 
   def index 
-    render json: Bilboard.all
+    render json: Billboard.all
   end
 
   def show 
@@ -12,7 +12,7 @@ class Api::BillboardsController < ApplicationController
   end 
 
   def create
-    @billboard = Billboard.new(sub_params)
+    @billboard = Billboard.new(billboard_params)
     if @billboard.save
       render json: @billboard
     else
@@ -25,7 +25,7 @@ class Api::BillboardsController < ApplicationController
     if @billboard.update(billboard_params)
       render json: @billboard
     else
-      render json: { errors: @billboard.errors.messages[:title][0] },  status: :unprocessable_entity
+      render json: { errors: @billboard.errors },  status: :unprocessable_entity
     end
   end
 
@@ -44,7 +44,7 @@ class Api::BillboardsController < ApplicationController
       params.require(:billboard).permit(:title, :description)
     end
 
-    def set_sub
+    def set_billboard
       @billboard = Billboard.find(params[:id])
     end
 

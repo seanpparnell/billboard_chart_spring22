@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import ArtistForm from './ArtistForm';
-import ArtistList from './ArtistList'
+import ArtistList from './ArtistList';
+import { useParams } from "react-router-dom";
 
 const Artists = ({ billboardId }) => {
   const [artists, setArtists] = useState([])

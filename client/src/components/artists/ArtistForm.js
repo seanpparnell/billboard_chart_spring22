@@ -24,7 +24,7 @@ return (
           name="rank"
           value={artist.rank}
           onChange={ (e) => setArtist({ ...artist, rank: e.target.value })}
-          placeholder="Description"
+          placeholder="Rank"
           required
         />
         <button type="submit">Submit</button>

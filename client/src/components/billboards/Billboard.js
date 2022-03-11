@@ -29,7 +29,10 @@ const Billboard = ({ id, title, description, updateBillboard, deleteBillboard })
           <button onClick={() => setEdit(true)}>Edit</button>
           <button onClick={() => deleteBillboard(id)}>Delete</button>
           {/* <Artists billboardId={id} /> */}
-          <Link to={`/billboards/${id}/artists`}>
+          <Link 
+            to={`/billboards/${id}/artists`}
+            state={{ billboardId: id, billboardTitle: title }}
+            >
             Artists
           </Link>
         </>

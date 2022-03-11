@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 
-const ArtistForm = ({ addArtist, id, title, rank, updateArtist, setEdit }) => {
+const ArtistForm = ({ addArtist, id, title, rank, updateArtist, setArtist }) => {
   const [artist, setArtist] = useState({title: '', rank: ''})
 
 
@@ -9,18 +9,11 @@ useEffect( () => {
   if (id) {
     setArtist ({ title, rank })
   }
+
 }, [])
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (id) {
-      updateArtist(id, artist)
-      setEdit(false) }
-    else {
-      addArtist(artist)
-    }
-
-    
-    
+    addArtist(artist)
     setArtist({ title: '', rank: '' })
   }
   

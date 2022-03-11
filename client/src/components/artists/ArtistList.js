@@ -1,11 +1,13 @@
-import Artist from "./Artist"
+import Artist from "./Artist";
 
-const ArtistList = ({ artists }) => (
+const ArtistList = ({ artists, updateArtist, deleteArtist }) => (
   <>
     { artists.map( a =>
       <Artist 
         key={a.id}
         {...a}
+        updateArtist={updateArtist}
+        deleteArtist={deleteArtist}
       />
     )}
   </>

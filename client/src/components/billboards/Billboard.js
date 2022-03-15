@@ -1,6 +1,6 @@
 import { useState } from "react";
 import BillboardForm from "./BillboardForm";
-import Artists from '../artists/Artists';
+// import Artists from '../artists/Artists';
 import { Link } from 'react-router-dom';
 
 
@@ -26,13 +26,14 @@ const Billboard = ({ id, title, description, updateBillboard, deleteBillboard })
         </>
         :
         <>
+        
           <button onClick={() => setEdit(true)}>Edit</button>
           <button onClick={() => deleteBillboard(id)}>Delete</button>
-          {/* <Artists billboardId={id} /> */}
+          
           <Link 
             to={`/billboards/${id}/artists`}
-            state={{ billboardId: id, billboardTitle: title }}
-            >
+            state={{ billboardId: id, billboardTitle: title}}
+          >
             Artists
           </Link>
         </>

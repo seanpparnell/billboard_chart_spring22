@@ -1,18 +1,30 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 
-const ArtistForm = ({ addArtist }) => {
+const ArtistForm = ({ addArtist, id, title, rank, updateArtist, setEdit }) => {
   const [artist, setArtist] = useState({title: '', rank: ''})
+
+  useEffect( () => {
+    if (id) {
+      setArtist({title, rank})
+    }
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    addArtist(artist)
+    if (id) {
+      updateArtist(id, artist)
+      setEdit(false)
+    } else {
+      addArtist(artist)
+    }
     setArtist({ title: '', rank: '' })
   }
 
 return (
   <>
     <form onSubmit={handleSubmit}>
+      <label>Title:</label>
     <input
           name="title"
           value={artist.title}
@@ -20,6 +32,7 @@ return (
           placeholder="Title"
           required
         />
+        <label>Rank:</label>
         <input
           name="rank"
           value={artist.rank}
@@ -35,4 +48,4 @@ return (
 
 }
 
-export default ArtistForm
+export default ArtistForm;

@@ -23,7 +23,7 @@ class Api::ArtistsController < ApplicationController
     if @artist.update(artist_params)
       render json: @artist
     else
-      render json: { errors: @artist.errors.messages[:title][0] },  status: :unprocessable_entity
+      render json: { errors: @artist.errors },  status: :unprocessable_entity
     end
   end
 

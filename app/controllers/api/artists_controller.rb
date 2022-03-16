@@ -1,9 +1,11 @@
 class Api::ArtistsController < ApplicationController
   before_action :set_billboard
   before_action :set_artist, only: [:show, :update, :destroy]
+  before_action :sort_rank, only: [:index]
 
   def index 
-    render json: @billboard.artists
+    # render json: @billboard.artists
+      render json: @artists
   end
 
   def show 
@@ -47,6 +49,10 @@ class Api::ArtistsController < ApplicationController
 
     def artist_params
       params.require(:artist).permit(:title, :rank)
+    end
+
+    def sort_rank
+      @artists = @billboard.artists.all.order(:rank)
     end
 
     

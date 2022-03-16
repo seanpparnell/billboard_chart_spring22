@@ -4,4 +4,6 @@ class Artist < ApplicationRecord
 
   validates :title, presence: true, length: {minimum: 2}
   validates :rank, presence: true, numericality: {less_than_or_equal_to:10}
+
+  
 end

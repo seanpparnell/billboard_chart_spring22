@@ -1,8 +1,9 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import BillboardForm from './BillboardForm'
-import BillboardList from './BillboardList'
+import BillboardForm from './BillboardForm';
+import BillboardList from './BillboardList';
+
 
 
 const Billboards = () => {

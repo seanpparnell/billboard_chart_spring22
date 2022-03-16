@@ -7,7 +7,8 @@ import { useLocation, useParams } from "react-router-dom";
 const Artists = ({}) => {
   const [artists, setArtists] = useState([])
   const location = useLocation();
-  const { billboardId, billboardTitle } = location.state
+  const {billboardId, billboardTitle} = location.state
+  // const { billboardId, billboardTitle  } = useParams()
 
   useEffect( () => {
     axios.get(`/api/billboards/${billboardId}/artists`)
@@ -17,13 +18,9 @@ const Artists = ({}) => {
 
   const addArtist = (artist) => {
     axios.post(`/api/billboards/${billboardId}/artists`, { artist })
-      .then( res => {
-        setArtists([...artists, res.data])
-      })
-      .catch( err => {
-        console.log(err)
-        alert(err.errors)
-      })
+      .then( res => setArtists([...artists, res.data]) )
+      .catch( err => 
+        console.log(err) )
   }
 
   const updateArtist = (id, artist) => {
@@ -54,8 +51,9 @@ const Artists = ({}) => {
 
   return (
     <>
-    <h1>Billboard: {billboardTitle}</h1>
-    <h4>Artists</h4>
+    <h4>Billboard: {billboardTitle}</h4>
+    {/* <h4>{billboardDescription}</h4> */}
+    <h3>Artists</h3>
     <ArtistForm addArtist={addArtist} />
     <ArtistList 
       artists={artists}

@@ -52,7 +52,7 @@ const Artists = ({}) => {
   return (
     <>
     <h4>Billboard: {billboardTitle}</h4>
-    {/* <h4>{billboardDescription}</h4> */}
+    
     <h3>Artists</h3>
     <ArtistForm addArtist={addArtist} />
     <ArtistList 

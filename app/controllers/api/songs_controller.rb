@@ -19,7 +19,7 @@ class Api::SongsController < ApplicationController
     end
   end
 
-  def upate
+  def update
     if @song.update(song_params)
       render json: @song
     else
@@ -35,7 +35,7 @@ class Api::SongsController < ApplicationController
   private
 
   def set_artist
-    @artist = Artist.find(params[:id])
+    @artist = Artist.find(params[:artist_id])
   end
 
   def set_song

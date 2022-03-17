@@ -4,7 +4,6 @@ const ArtistList = ({ artists, updateArtist, deleteArtist }) => (
   <>
     { artists.map( (a) =>
       <Artist
-        
         key={a.id}
         value={a.rank}
         {...a}

@@ -10,8 +10,8 @@ const Billboard = ({ id, title, description, updateBillboard, deleteBillboard })
 
   return (
     <>
-      <h1>{title}</h1>
-      <h3>{description}</h3>
+      <h2>{title}</h2>
+      <h4>{description}</h4>
       {
         editing ?
         <>

@@ -28,7 +28,7 @@ const Artist = ({id, title, rank, updateArtist, deleteArtist}) => {
         <button onClick={() => deleteArtist(id)}>Delete</button>
         <Link to={`/artists/${id}/songs`}>
           <button>
-            go to Songs
+            go to Song
           </button>
         </Link>
       </>

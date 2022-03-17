@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
+=======
+import { useState, useEffect } from "react"
+>>>>>>> 8954061 (Songs Folder done)
 
 
 const SongForm = ({ addSong, id, title, duration, updateSong, setEdit }) => {
